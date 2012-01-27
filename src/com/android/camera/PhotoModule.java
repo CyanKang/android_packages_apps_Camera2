@@ -1398,9 +1398,11 @@ public class PhotoModule
 
     @Override
     public void autoFocus() {
-        mFocusStartTime = System.currentTimeMillis();
-        mCameraDevice.autoFocus(mHandler, mAutoFocusCallback);
-        setCameraState(FOCUSING);
+        if(mCameraState != SNAPSHOT_IN_PROGRESS) {
+            mFocusStartTime = System.currentTimeMillis();
+            mCameraDevice.autoFocus(mHandler, mAutoFocusCallback);
+            setCameraState(FOCUSING);
+        }
     }
 
     @Override
