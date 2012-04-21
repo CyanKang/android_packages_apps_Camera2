@@ -1641,13 +1641,13 @@ public class PhotoModule
     }
 
     private void setFocusAreasIfSupported() {
-        if (mFocusAreaSupported) {
+        if (mFocusAreaSupported && mFocusManager.getFocusAreas() != null) {
             mParameters.setFocusAreas(mFocusManager.getFocusAreas());
         }
     }
 
     private void setMeteringAreasIfSupported() {
-        if (mMeteringAreaSupported) {
+        if (mMeteringAreaSupported && mFocusManager.getMeteringAreas() != null) {
             mParameters.setMeteringAreas(mFocusManager.getMeteringAreas());
         }
     }
