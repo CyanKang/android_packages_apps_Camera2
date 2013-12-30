@@ -904,6 +904,9 @@ public class VideoModule implements CameraModule,
             case KeyEvent.KEYCODE_CAMERA:
                 mUI.pressShutter(false);
                 return true;
+            case KeyEvent.KEYCODE_POWER:
+                onShutterButtonClick();
+                return true;
         }
         return false;
     }

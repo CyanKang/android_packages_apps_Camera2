@@ -1441,6 +1441,11 @@ public class PhotoModule
                     return true;
                 }
                 return false;
+            case KeyEvent.KEYCODE_POWER:
+                if (mFirstTimeInitialized && event.getRepeatCount() == 0) {
+                    onShutterButtonFocus(true);
+                }
+                return true;
             case KeyEvent.KEYCODE_CAMERA:
                 if (mFirstTimeInitialized && event.getRepeatCount() == 0) {
                     onShutterButtonClick();
@@ -1470,6 +1475,11 @@ public class PhotoModule
             case KeyEvent.KEYCODE_FOCUS:
                 if (mFirstTimeInitialized) {
                     onShutterButtonFocus(false);
+                }
+                return true;
+            case KeyEvent.KEYCODE_POWER:
+                if (mFirstTimeInitialized) {
+                    onShutterButtonClick();
                 }
                 return true;
         }

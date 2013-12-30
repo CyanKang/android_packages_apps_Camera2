@@ -482,6 +482,14 @@ public class CameraActivity extends Activity
         mFilmStripView.getController().goToNextItem();
     }
 
+    private void initPowerKey(boolean enabled) {
+        if (enabled) {
+            getWindow().addFlags(WindowManager.LayoutParams.PREVENT_POWER_KEY);
+        } else {
+            getWindow().clearFlags(WindowManager.LayoutParams.PREVENT_POWER_KEY);
+        }
+    }
+
     /**
      * If {@param visible} is false, this hides the action bar and switches the system UI
      * to lights-out mode.
@@ -1604,7 +1612,6 @@ public class CameraActivity extends Activity
         }
     }
 
-
     /**
      * Check whether camera controls are visible.
      *
@@ -1622,6 +1629,14 @@ public class CameraActivity extends Activity
      */
     private void setPreviewControlsVisibility(boolean showControls) {
         mCurrentModule.onPreviewFocusChanged(showControls);
+
+        // based on the information if we have controls or not
+        // activate the override for the power key
+        initPowerKey(showControls);
+
+        // controls are only shown when the camera app is active
+        // so we can assume to fetch this information from here
+        mInCameraApp = showControls;
     }
 
     // Accessor methods for getting latency times used in performance testing
