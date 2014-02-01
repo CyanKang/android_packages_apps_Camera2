@@ -111,10 +111,14 @@ public class CameraUtil {
     public static final String TRUE = "true";
     public static final String FALSE = "false";
 
+    private static boolean sCancelAutoFocusOnPreviewStopped;
     // Fields for the show-on-maps-functionality
     private static final String MAPS_PACKAGE_NAME = "com.google.android.apps.maps";
     private static final String MAPS_CLASS_NAME = "com.google.android.maps.MapsActivity";
 
+    public static boolean cancelAutoFocusOnPreviewStopped() {
+        return sCancelAutoFocusOnPreviewStopped;
+    }
     /** Has to be in sync with the receiving MovieActivity. */
     public static final String KEY_TREAT_UP_AS_BACK = "treat-up-as-back";
 
@@ -182,8 +186,8 @@ public class CameraUtil {
         sPixelDensity = metrics.density;
         sImageFileNamer = new ImageFileNamer(
                 context.getString(R.string.image_file_name_format));
-
-        // These come from the config, but are needed before parameters are set.
+        sCancelAutoFocusOnPreviewStopped =
+                context.getResources().getBoolean(R.bool.cancelAutoFocusOnPreviewStopped);
         sSamsungCamMode = context.getResources().getBoolean(R.bool.needsSamsungCamMode);
         sHTCCamMode = context.getResources().getBoolean(R.bool.needsHTCCamMode);
         sEarlyVideoSize = context.getResources().getBoolean(R.bool.needsEarlyVideoSize);

@@ -37,4 +37,8 @@
     <bool name="noFaceDetectOnFrontCamera">false</bool>
     <!-- Use ZSL mode for Qualcomm cameras -->
     <bool name="enableZSL">false</bool>
+
+    <!-- Cancel autofocus if preview stopped. If camera HAL does not support
+        it set this value to false -->
+    <bool name="cancelAutoFocusOnPreviewStopped">true</bool>
 </resources>
